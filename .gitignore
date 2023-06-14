@@ -1,0 +1,16 @@
+﻿# 项目文件夹
+Temp/
+Logs/
+Library/
+Build/
+.idea/
+obj/
+ServerData/
+ProjectSettings/
+UserSettings/
+*.sln
+*.csproj
+
+/ProjectSettings/
+log/
+Assets/StreamingAssets/
