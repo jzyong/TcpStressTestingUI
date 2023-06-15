@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b7ba5bcbe04df2b5fcb38ff0bd90b7, type: 3}
-  m_Name: StressTestingConfig_test
+  m_Script: {fileID: 11500000, guid: b1487f5d688e4f94f828f879d599dbdc, type: 3}
+  m_Name: Built In Data_PlayerDataGroupSchema
   m_EditorClassIdentifier: 
-  rpcHost: 127.0.0.1
-  rpcPort: 40028
-  gateUrls: 127.0.0.1:4001747.127.0.0.1:40018
+  m_Group: {fileID: 11400000, guid: 90188a733bea0e9479784eacf6da9e81, type: 2}
+  m_IncludeResourcesFolders: 1
+  m_IncludeBuildSettingsScenes: 1

@@ -7,6 +7,7 @@ using Core.Util.Time;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace StressTesting
@@ -22,10 +23,9 @@ namespace StressTesting
         public Button requestInterfaceInfoButton;
         public Button pushInterfaceInfoButton;
         public Button workerInfoButton;
-        public Button closeButton;
 
-        [Tooltip("网关地址")] public InputField gateUrlsInputField;
-        [Tooltip("测试类型")] public InputField testTypeInputField;
+        [Tooltip("服务器地址")] public InputField gateUrlsInputField;
+        [Tooltip("压测客户端地址")] public InputField clientUrlInputField;
         [Tooltip("压测总人数")] public InputField peopleCountInputField;
         [Tooltip("登录频率，人/s")] public InputField spawnRateInputField;
 
@@ -47,11 +47,12 @@ namespace StressTesting
             //获取ui对象组件
             startTestButton.onClick.AddListener(StartTest);
             stopTestButton.onClick.AddListener(StopTest);
-            closeButton.onClick.AddListener(ClosePanel);
             statisticInfoButton.onClick.AddListener(ShowStatisticInfo);
             requestInterfaceInfoButton.onClick.AddListener(RequestShowInterfaceInfo);
             pushInterfaceInfoButton.onClick.AddListener(PushShowInterfaceInfo);
             workerInfoButton.onClick.AddListener(ShowWorkerInfo);
+            // clientUrlInputField.onValueChanged.AddListener(delegate(string arg0) { ClientUrlChange();  });
+            clientUrlInputField.onEndEdit.AddListener(delegate {ClientUrlChange(); });
 
             UIManager.Instance.Canvas = GetComponentInParent<Canvas>();
             //禁用背景音
@@ -94,7 +95,7 @@ namespace StressTesting
             if (response.Status == 2 && !"death".Equals(boySkeletonAnimation.AnimationName))
             {
                 // boySkeletonAnimation.AnimationState.SetAnimation(0, "death", false);
-                SetBoyAnimation("death",false);
+                SetBoyAnimation("death", false);
                 UIManager.Instance.ShowUI("NoticePanel", "压测服已关闭，开启压测服再重试");
                 Log.Println("压测服务器未开启");
             }
@@ -135,6 +136,42 @@ namespace StressTesting
             ChangeContent(3);
         }
 
+        /// <summary>
+        /// 客户端地址改变
+        /// </summary>
+        private void ClientUrlChange()
+        {
+            try
+            {
+                if (clientUrlInputField.text.Length<10)
+                {
+                    UIManager.Instance.ShowUI("NoticePanel", $"请输入有效地址: {clientUrlInputField.text}");
+                    return;
+                }
+                
+                if (!string.IsNullOrEmpty(clientUrlInputField.text))
+                {
+                    var strs = clientUrlInputField.text.Split(":");
+                    if (strs.Length != 2)
+                    {
+                        UIManager.Instance.ShowUI("NoticePanel", $"请输入有效地址: {clientUrlInputField.text}");
+                        return;
+                    }
+
+                    StressTestingManager.Instance.Host = strs[0];
+                    StressTestingManager.Instance.Port = Convert.ToInt32(strs[1]);
+                }
+                else
+                {
+                    UIManager.Instance.ShowUI("NoticePanel", $"请输入有效地址: {clientUrlInputField.text}");
+                }
+            }
+            catch (Exception e)
+            {
+                UIManager.Instance.ShowUI("NoticePanel", $"请输入有效地址: {clientUrlInputField.text} ==>{e.Message}");
+            }
+        }
+
 
         /// <summary>
         /// 切换显示内容
@@ -164,15 +201,6 @@ namespace StressTesting
             }
         }
 
-
-        /**
-         * 关闭面板
-         */
-        private void ClosePanel()
-        {
-            SceneManager.LoadScene("MainScene");
-            AudioManager.Instance.PlaySfx("button");
-        }
 
         /// <summary>
         /// 设置动画
@@ -208,10 +236,6 @@ namespace StressTesting
             }
 
             var testType = 0;
-            if (!string.IsNullOrEmpty(testTypeInputField.text))
-            {
-                testType = Convert.ToInt32(testTypeInputField.text);
-            }
 
             //默认一个人
             var peopleCount = 1;
@@ -255,7 +279,7 @@ namespace StressTesting
             // StressTestingManager.Instance.ServiceClient.stopTest(new StopTestRequest());
             try
             {
-                StressTestingManager.Instance.SaveStatisticLog(testTypeInputField.text, peopleCountInputField.text);
+                StressTestingManager.Instance.SaveStatisticLog("0", peopleCountInputField.text);
                 StressTestingManager.Instance.ServiceClient.stopTest(new StopTestRequest());
                 Invoke(nameof(BoyAnimationIdle), 3);
             }

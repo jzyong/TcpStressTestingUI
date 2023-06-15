@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StressTestingConfig_jzy
   m_EditorClassIdentifier: 
   rpcHost: 127.0.0.1
-  rpcPort: 5015
-  gateUrls: 127.0.0.1:7014
+  rpcPort: 5010
+  gateUrls: 127.0.0.1:7070

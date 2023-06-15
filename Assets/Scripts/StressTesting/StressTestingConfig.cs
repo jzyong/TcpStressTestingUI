@@ -22,7 +22,7 @@ namespace StressTesting
         /// <summary>
         /// 网关默认地址
         /// </summary>
-        [SerializeField] private string gateUrls = "47.108.13.34:40017,47.108.13.34:40018";
+        [SerializeField] private string gateUrls = "127.0.0.1:40017,127.0.0.1:40018";
 
 
         public string RpcHost => rpcHost;

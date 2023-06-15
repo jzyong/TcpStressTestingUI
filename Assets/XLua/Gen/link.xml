@@ -1,0 +1,10 @@
+﻿
+
+<linker>
+
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="StressTesting.FilterPanel" preserve="all"/>
+		
+	</assembly>
+
+</linker>

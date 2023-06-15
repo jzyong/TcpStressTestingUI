@@ -1,15 +1,5 @@
-## 一、目录说明
 
-| 目录           | 描述         |
-|---------------|------------|             
-| Common        | 通用逻辑       |
-| Core          | 基础工具类      |
-| Hall          | 大厅         |
-| ProtoMessage  | ProtoBuf协议 |
-| Slots         | slots 游戏代码 |
-| StressTesting | 压力测试       |
-
-## 二、代码参考文档
+## 代码参考文档
 
 ### 1. Grpc
 
@@ -35,5 +25,5 @@
 * xlua:  
   <https://github.com/Tencent/xLua>  
 
-## 三、TODO
+## TODO
 * 精简
