@@ -77,11 +77,11 @@ namespace Common
         /// <param name="name"></param>
         public void PlaySfx(string name)
         {
-            ResourceManager.Instance.LoadAudioClip(name, (clip =>
-            {
-                if (sfxAudioSource != null)
-                    sfxAudioSource.PlayOneShot(clip);
-            }));
+            // ResourceManager.Instance.LoadAudioClip(name, (clip =>
+            // {
+            //     if (sfxAudioSource != null)
+            //         sfxAudioSource.PlayOneShot(clip);
+            // }));
         }
 
 
@@ -93,30 +93,30 @@ namespace Common
             bgmAudioSource.Stop();
         }
 
-        /// <summary>
-        /// 播放音乐
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="audioSuffix"></param>
-        public void PlayMusic(string name, string audioSuffix = "mp3")
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                if (bgmAudioSource)
-                {
-                    bgmAudioSource.Stop();
-                }
-            }
-
-            ResourceManager.Instance.LoadAudioClip(name, (clip =>
-            {
-                if (bgmAudioSource)
-                {
-                    bgmAudioSource.clip = clip;
-                    bgmAudioSource.Play();
-                }
-            }), audioSuffix);
-        }
+        // /// <summary>
+        // /// 播放音乐
+        // /// </summary>
+        // /// <param name="name"></param>
+        // /// <param name="audioSuffix"></param>
+        // public void PlayMusic(string name, string audioSuffix = "mp3")
+        // {
+        //     if (string.IsNullOrEmpty(name))
+        //     {
+        //         if (bgmAudioSource)
+        //         {
+        //             bgmAudioSource.Stop();
+        //         }
+        //     }
+        //
+        //     ResourceManager.Instance.LoadAudioClip(name, (clip =>
+        //     {
+        //         if (bgmAudioSource)
+        //         {
+        //             bgmAudioSource.clip = clip;
+        //             bgmAudioSource.Play();
+        //         }
+        //     }), audioSuffix);
+        // }
 
         /// <summary>
         /// 设置音乐音量

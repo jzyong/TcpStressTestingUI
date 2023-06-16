@@ -15,8 +15,28 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 5de0af6b095e72043aa73672d4f39fc0
-  m_SerializeEntries: []
+  m_GUID: a44e4821171393c4d9f5fe08dd09d25f
+  m_SerializeEntries:
+  - m_GUID: d0f6169117dde8f44bb370f172651cca
+    m_Address: PushInterfaceItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b49407b57f9f2a047affb8e5d30c6bd2
+    m_Address: RequestInterfaceItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 57152038b3cb25b4c84546bda997d0c3
+    m_Address: WorkerItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50e96a72d2b89dd49aea98677539fdae
+    m_Address: NoticePanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2a0ffe46fa879164ca4ed16579a02c0a
+    m_Address: CloseButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 33ea981fc326a98488549ed454e602a4, type: 2}
   m_SchemaSet:
